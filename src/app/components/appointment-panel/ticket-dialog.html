@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>Ticket de cita</h1>
+<div mat-dialog-content>
+    <h1 class="mat-h1">Veterinaria de la Dra. Lissete</h1>
+    <p class="mat-body">
+        <b>Cliente:</b> Sr(a). {{data.customer}}
+        <br>
+        <b>Mascota:</b> {{data.petName}}
+        <br>
+        <b>Tratamiento:</b> {{data.appointment.treatment}}
+        <br>
+        <b>Medicamento:</b> {{data.appointment.drug}}
+    </p>
+    <mat-divider></mat-divider>
+    <p class="mat-body text-right">
+        Costo regular: ${{data.appointment.regularCost.toFixed(2)}}
+        <br>
+        Descuento: ${{data.appointment.discount.toFixed(2)}}
+        <br>
+        <b>Costo real: ${{data.appointment.realCost.toFixed(2)}}</b>
+    </p>
+</div>
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Imprimir</button>
+</mat-dialog-actions>

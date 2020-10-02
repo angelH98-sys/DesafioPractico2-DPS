@@ -1,0 +1,49 @@
+<div class="row">
+    <mat-card class="col-xl-6">
+        <h1 class="mat-h1">Inicio de sesión</h1>
+        <form class="row" [formGroup]="form"
+            (ngSubmit)="onSubmit()">
+            <mat-form-field class="col-12 mb-1">
+                <mat-label>
+                    Usuario
+                </mat-label>
+                <input matInput type="text"
+                    formControlName="user"
+                    placeholder="admin">
+                <mat-error *ngIf="form.get('user').invalid">
+                    {{messenger.getInputError(form, 'user')}}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-12 mb-1">
+                <mat-label>
+                    Contraseña
+                </mat-label>
+                <input matInput type="password"
+                    formControlName="pass"
+                    placeholder="admin">
+                <mat-error *ngIf="form.get('pass').invalid">
+                    {{messenger.getInputError(form, 'pass')}}
+                </mat-error>
+            </mat-form-field>
+            <div class="col-xl-6 mx-auto">
+                <button mat-raised-button color="primary"
+                    [disabled]="form.invalid"
+                    class="w-100">
+                    Enviar
+                </button>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-12 mt-3 mb-2">
+                <p class="mat-h1 text-center">ó</p>
+            </div>
+            <div class="col-xl-6 mx-auto">
+                <button mat-raised-button color="primary"
+                    (click)="AuthLogin()"
+                    class="w-100">
+                    Iniciar sesión con Google
+                </button>
+            </div>
+        </div>
+    </mat-card>
+</div>

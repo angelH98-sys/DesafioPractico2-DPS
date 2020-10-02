@@ -1,0 +1,91 @@
+<p class="mat-display-1 mb-3 text-center">
+    Citas del cliente: {{customer.name}}
+</p>
+<div class="row">
+    <div class="col-1">
+        <button mat-mini-fab color="warn"
+            matTooltip="Volver"
+            routerLink="/customer/panel">
+            <mat-icon>keyboard_backspace</mat-icon>
+        </button>
+    </div>
+    <div class="col-2">
+        <button mat-raised-button color="primary"
+            class="w-100"
+            (click)="openNewAppointmentDialog()">
+            Nueva consulta
+        </button>
+    </div>
+    <mat-form-field class="col-9">
+        <mat-label>Buscar</mat-label>
+        <input matInput (keyup)="applyFilter($event)">
+    </mat-form-field>
+</div>
+<table *ngIf="customer.appointments != null" 
+    mat-table [dataSource]="list"
+    class="w-100 mat-elevation-z8">
+    <ng-container matColumnDef="treatment">
+        <th mat-header-cell *matHeaderCellDef>
+            Tratamiento
+        </th>
+        <td mat-cell *matCellDef="let item">
+            {{item.treatment}}
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="drug">
+        <th mat-header-cell *matHeaderCellDef>
+            Medicina
+        </th>
+        <td mat-cell *matCellDef="let item">
+            {{item.drug}}
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="regularCost">
+        <th mat-header-cell *matHeaderCellDef>
+            Costo Regular
+        </th>
+        <td mat-cell *matCellDef="let item">
+            ${{item.regularCost.toFixed(2)}}
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="discount">
+        <th mat-header-cell *matHeaderCellDef>
+            Descuento
+        </th>
+        <td mat-cell *matCellDef="let item">
+            ${{item.discount.toFixed(2)}}
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="realCost">
+        <th mat-header-cell *matHeaderCellDef>
+            Costo Real
+        </th>
+        <td mat-cell *matCellDef="let item">
+            ${{item.realCost.toFixed(2)}}
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>
+            Acciones
+        </th>
+        <td mat-cell *matCellDef="let item">
+            <button mat-icon-button color="primary"
+                (click)="openUpdateAppointmentDialog(item)"
+                matTooltip="Editar">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="primary"
+                (click)="openDeleteAppointmentDialog(item)"
+                matTooltip="Eliminar">
+                <mat-icon>delete</mat-icon>
+            </button>
+            <button mat-icon-button color="primary"
+                (click)="openTicketDialog(item)"
+                matTooltip="Ticket">
+                <mat-icon>receipt_long</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef='["treatment", "drug", "regularCost", "discount", "realCost", "actions"]'></tr>
+    <tr mat-row *matRowDef='let row; columns: ["treatment", "drug", "regularCost", "discount", "realCost", "actions"];'></tr>
+</table>

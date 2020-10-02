@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Eliminar cita</h1>
+<div mat-dialog-content>
+    <p class="mat-body">
+        ¿Estás seguro eliminar la cita seleccionada?
+    </p>    
+</div>
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Confirmar</button>
+</mat-dialog-actions>

@@ -1,0 +1,39 @@
+<h1 mat-dialog-title>Actualización de datos</h1>
+<div mat-dialog-content>
+    <form [formGroup]="form">
+        <mat-form-field class="mb-1">
+            <mat-label>Nombre</mat-label>
+            <input matInput type="text"
+                formControlName="name">
+            <mat-error *ngIf="form.get('name').invalid">
+                {{messenger.getInputError(form, 'name')}}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="mb-1">
+            <mat-label>DUI</mat-label>
+            <input matInput type="text"
+                formControlName="dui">
+            <mat-error *ngIf="form.get('dui').invalid">
+                {{messenger.getInputError(form, 'dui')}}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="mb-1">
+            <mat-label>Mascota</mat-label>
+            <input matInput type="text"
+                formControlName="petName">
+            <mat-error *ngIf="form.get('petName').invalid">
+                {{messenger.getInputError(form, 'petName')}}
+            </mat-error>
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">
+        Cancelar
+    </button>
+    <button mat-button [mat-dialog-close]="form.value"
+        cdkFocusInitial
+        [disabled]="form.invalid">
+        Enviar
+    </button>
+</div>

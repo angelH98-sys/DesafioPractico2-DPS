@@ -1,0 +1,34 @@
+<h1 mat-dialog-title>Nueva cita</h1>
+<div mat-dialog-content>
+    <form [formGroup]="form" class="row">
+        <mat-form-field class="col-12 mb-1">
+            <mat-label>
+                Tratamiento
+            </mat-label>
+            <input matInput type="text"
+                formControlName="treatment">
+            <mat-error *ngIf="form.get('treatment').invalid">
+                {{messenger.getInputError(form, 'treatment')}}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-12 mb-1">
+            <mat-label>
+                Medicamento
+            </mat-label>
+            <input matInput type="text"
+                formControlName="drug">
+            <mat-error *ngIf="form.get('drug').invalid">
+                {{messenger.getInputError(form, 'drug')}}
+            </mat-error>
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">
+        Cancelar
+    </button>
+    <button mat-button [mat-dialog-close]="form.value"
+        [disabled]="form.invalid">
+        Enviar
+    </button>
+</div>
